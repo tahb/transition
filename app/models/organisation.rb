@@ -42,7 +42,7 @@ class Organisation < ActiveRecord::Base
             UNION
             SELECT s.organisation_id, s.id FROM sites s
         ) AS organisations_sites ON organisations_sites.organisation_id = organisations.id').
-      joins('INNER JOIN sites ON sites.id = organisations_sites.site_id').
+      joins('OUTER JOIN sites ON sites.id = organisations_sites.site_id').
       group('organisations.id'). # Postgres will accept a group by primary key
       having('COUNT(*) > 0')
     }
