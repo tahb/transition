@@ -16,7 +16,7 @@ Rails.application.routes.draw do
 
   resources :hosts, only: [:index]
 
-  resources :organisations, only: [:show, :index]
+  resources :organisations, except: [:destroy]
 
   get 'mappings/find_global', to: 'mappings#find_global'
   get 'hits', to: 'hits#universal_summary'
