@@ -24,7 +24,7 @@ Rails.application.routes.draw do
 
   get 'leaderboard', to: 'leaderboard#index'
 
-  resources :sites, only: [:edit, :update, :show] do
+  resources :sites, except: [:destroy] do
 
     get 'mappings/find', as: 'mapping_find'
     resources :mappings, only: [:index, :edit, :update] do

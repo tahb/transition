@@ -146,7 +146,6 @@ private
                            ])
   end
 
-
   def bulk_edit
     @bulk_edit ||= bulk_editor_class.new(@site, params, site_mappings_path(@site))
   end
