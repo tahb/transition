@@ -16,6 +16,6 @@ class UnauthenticatedController < ActionController::Metal
       message = env['warden.options'].fetch(:message, "unauthorized.user")
       flash.alert = I18n.t(message)
     end
-    [401, {}, 'NOTAUTHORISED']
+    redirect_to root_path
   end
 end

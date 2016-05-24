@@ -71,10 +71,16 @@
                 </ul>
               <% end %>
 
-              <div class="navbar-text pull-right">
-                <%= link_to current_user.name, Plek.current.find('signon') %>
-                &bull; <%= link_to 'Sign out', logout_path %>
-              </div>
+              <% if user_signed_in? %>
+                <div class="navbar-text pull-right">
+                  <%= link_to current_user.name, Plek.current.find('signon') %>
+                  &bull; <%= link_to 'Sign out', logout_path %>
+                </div>
+              <% else %>
+                <div class="navbar-text pull-right">
+                  <%= link_to 'Sign in', login_path %>
+                </div>
+              <% end %>
 
               <% if content_for?(:navbar_right) %>
                 <div class="navbar-text pull-right">

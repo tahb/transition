@@ -1,4 +1,8 @@
 class NilUser
+  def authenticated?
+    false
+  end
+
   def id
     nil
   end

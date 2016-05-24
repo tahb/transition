@@ -57,6 +57,7 @@ group :test do
 end
 
 group :development, :test do
+  gem 'byebug'
   gem 'pry'
   gem 'rspec-rails', '3.4.2'
   gem 'rspec-collection_matchers', '1.1.2'
