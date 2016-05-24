@@ -19,10 +19,10 @@ gem 'activerecord-import', '0.12.0'
 gem 'sidekiq', '4.1.1'
 gem 'redis-namespace', '1.5.2'
 gem 'rails_warden', '0.5.8'
+gem 'gds-api-adapters', '29.6.0'
 
 # Remove GDS specific stuff...
 # gem 'govuk_admin_template', '4.2.0'
-# gem 'gds-api-adapters', '29.6.0'
 gem 'bootstrap-sass', '3.3.5.1'
 
 # Custom authentication...

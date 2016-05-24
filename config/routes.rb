@@ -1,5 +1,5 @@
 Rails.application.routes.draw do
-  root to: 'organisations#index'
+  root to: 'authentication#index'
 
   resources :style, only: [:index]
   resources :glossary, only: [:index]
@@ -13,7 +13,6 @@ Rails.application.routes.draw do
   get 'login', to: 'authentication#new'
   get 'auth/zendesk/callback', to: 'authentication#create'
   get 'logout', to: 'authentication#destroy'
-  get 'home', to: 'authentication#index'
 
   resources :hosts, only: [:index]
 

@@ -5,13 +5,14 @@ class ApplicationController < ActionController::Base
   before_filter :exclude_all_users_except_admins_during_maintenance
 
   # this is sooo bad.
-  before_filter :janky_session_user
+  before_filter :set_current_user!
 
-  def janky_session_user
+  private def set_current_user!
     @current_user ||= User.find(session[:user_id])
-  rescue
+  rescue ActiveRecord::RecordNotFound => e
+    logger.info("Could not find user from session.")
     if @current_user.nil?
-      redirect_to home_path
+      redirect_to root_path
     end
   end
 

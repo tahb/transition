@@ -1,7 +1,6 @@
 class AuthenticationController < ApplicationController
   # we don't need to authenticate these requests, they create the authentication
-  skip_before_filter :janky_session_user
-  skip_before_filter :require_signin_permission!
+  skip_before_filter :set_current_user!
 
   def index
     render layout: nil
@@ -16,10 +15,8 @@ class AuthenticationController < ApplicationController
     logger.info('OAuth Response Received')
     data = request.env['omniauth.auth']
 
-    # data['credentials']
-
     sign_in(data['uid'], data['info'])
-    redirect_to root_path
+    redirect_to organisations_path
   end
 
   def destroy
@@ -31,7 +28,7 @@ class AuthenticationController < ApplicationController
     check_email!(info['email'])
 
     user = User.find_or_create_by(uid: uid)
-    user.update!(name: info['name'], email: info['email'], permissions: ['admin', 'GDS Editor'], organisation_content_id: '25c7faeb-39f8-4c9a-b34d-03cea4f1ad5d')
+    user.update!(name: info['name'], email: info['email'], permissions: ['admin', 'GDS Editor'], organisation_content_id: nil)
     session[:user_id] = user.id
   end
 
