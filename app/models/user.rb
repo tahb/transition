@@ -6,6 +6,11 @@ class User < ActiveRecord::Base
 
   serialize :permissions, Array
 
+  # Is this a real, authenticated user
+  def authenticated?
+    true
+  end
+
   def admin?
     permissions.include?('admin')
   end

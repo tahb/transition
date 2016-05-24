@@ -1,27 +1,21 @@
 class ApplicationController < ActionController::Base
   # include CommonAuthentication
 
-  # before_filter :require_signin_permission!
   before_filter :exclude_all_users_except_admins_during_maintenance
+  before_filter :authenticate
 
-  # this is sooo bad.
-  before_filter :janky_session_user
-
-  def janky_session_user
-    @current_user ||= User.find(session[:user_id])
-  rescue
-    if @current_user.nil?
-      redirect_to home_path
-    end
+  private def authenticate
+    warden.authenticate!
   end
 
   helper_method :current_user
   def current_user
-    @current_user
+    warden.user || NilUser.new
   end
 
+  helper_method :user_signed_in?
   def user_signed_in?
-    !current_user.nil?
+    current_user.authenticated?
   end
 
   # Prevent CSRF attacks by raising an exception.

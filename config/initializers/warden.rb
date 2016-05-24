@@ -1,5 +1,4 @@
 Rails.configuration.middleware.use RailsWarden::Manager do |manager|
-  manager.default_strategies :zendesk
   manager.failure_app = UnauthenticatedController
 end
 
@@ -20,13 +19,5 @@ Warden::Manager.serialize_into_session do |user|
 end
 
 Warden::Manager.serialize_from_session do |id|
-  User.get(id)
-end
-
-# Declare your strategies here
-Warden::Strategies.add(:zendesk) do
- def authenticate!
-   # do stuff
-
- end
+  User.find(id)
 end
