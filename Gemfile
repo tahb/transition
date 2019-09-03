@@ -1,6 +1,6 @@
 source 'https://rubygems.org'
 
-gem 'rails', '5.1.6.2'
+gem 'rails', '5.2.3'
 gem 'govuk_app_config', '~> 2.0'
 gem 'activerecord-session_store'
 gem 'pg'
